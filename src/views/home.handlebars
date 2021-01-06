@@ -1,0 +1,35 @@
+<h1>Exchange Rate App</h1>
+<br>
+<form>
+   <h3>Amount</h3>
+   <input name="amount" placeholder="Input amount..." value='{{amount}}'>
+
+   {{#if message}}
+   <p><i>{{message}}</i></p>
+   {{/if}}
+
+   <h3>From</h3>
+   <select name="from" id="from" autofocus>
+      {{#each body}}
+      <option value={{this.abbreviation}}>{{this.abbreviation}}: {{this.currency}}</option>
+      {{/each}}
+   </select>
+   <h3>To</h3>
+   <select name="to" id="to">
+      {{#each body}}
+      <option value={{this.abbreviation}}>{{this.abbreviation}}: {{this.currency}}</option>
+      {{/each}}
+   </select>
+   <br>
+   <button type="submit">Exchange</button>
+</form>
+
+{{#if error}}
+<p><b>Error: </b><i>{{error}}</i></p>
+{{/if}}
+
+{{#if amount}}
+<p>Result: <b>{{amount}} {{from_currency}} = {{result}} {{to_currency}}</b></p>
+<p>1 {{to_currency}} = {{from_rate}} {{from_currency}}</p>
+<p>1 {{from_currency}} = {{to_rate}} {{to_currency}}</p>
+{{/if}}
